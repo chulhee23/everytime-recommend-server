@@ -56,7 +56,7 @@ ROOT_URLCONF = 'project_everyReco.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['project_everyReco/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
