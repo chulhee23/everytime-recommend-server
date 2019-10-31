@@ -2,9 +2,6 @@ from django.shortcuts import render
 
 # Create your views here.
 def home(request) :
-    if request.GET("lecture"):
-        search = true
-
     return render(request, 'home.html')
 
 def temp(request):
