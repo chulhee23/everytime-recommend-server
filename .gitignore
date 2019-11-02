@@ -167,4 +167,4 @@ dmypy.json
 
 # End of https://www.gitignore.io/api/python,djang
 
-module/
+main/analyze/

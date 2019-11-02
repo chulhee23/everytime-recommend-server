@@ -1,8 +1,8 @@
 from django.shortcuts import render
-
+from .analyze import Web_module
 # Create your views here.
 def home(request) :
-
+    Web_module.similar().question()
     return render(request, 'home.html')
 
 def temp(request):
