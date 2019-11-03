@@ -1,5 +1,28 @@
-$primary: purple;
+$primary: #466E88;
 $secondary: yellow;
 
 
 @import 'bootstrap/scss/bootstrap.scss';
+
+//home.html
+.background{
+    // background: linear-gradient(-135deg, #E4A972, #466E88) fixed;
+    // background: radial-gradient(#F2B9A1, #EA6264) fixed;
+    background: linear-gradient(to right, #466E88, #E4A972) fixed;
+}
+
+//resultBoth.html
+.button_wrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.button {
+    text-align: center;
+}
+
+//resultProf.html
+.ProfCard_wrapper{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
