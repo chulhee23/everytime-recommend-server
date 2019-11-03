@@ -2,17 +2,22 @@
 
 {% block content %}
 
-  <div class="container">
+<div class="container">
     <div class="text-center mt-5">
-      <div class="my-5">
-        <h1>빅장고</h1>
-      </div>
-      <div class="form-group">
-        <input class="form-control">
-      </div>
+        <div class="my-5">
+            <h1>빅장고</h1>
+        </div>
+        <div class="form-group">
+            <form action="{% url 'result' %}" method="GET">
+              <div class="form-group">
+                <input class="form-control my-4" name="lecture" placeholder="강의명을 입력하세요" required=true>
+                <input class="form-control" name="professor" placeholder="교수명을 입력하세요" required=true>
+              </div>
+              <!-- <input id="searchBt" type="submit" value="asdasasd" class="fa-lg"> -->
+              <button type="submit" class="btn btn-primary btn-block">검색하기</button>
+            </form>
+        </div>
     </div>
-
-  </div>
+</div>
 
 {% endblock %}
-
