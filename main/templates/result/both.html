@@ -4,9 +4,9 @@
 <div class="container">
     
     <h2 class="my-5 text-center">'{{ professor }}'교수님의 '{{ lecture }}'를 검색하셨습니다.</h2>
-    
+    <!-- {{result}} -->
     <p class="">해시태그</p>
-    
+    <p class="">{{result.hash_tags}}</p>
     <div class="btn-group">
       <div class="btn btn-outline-primary">
         강의 분석
@@ -17,11 +17,15 @@
         
     </div>
     
+    {% for similar_lecture in result.similar %}
     <div class="card mt-3 mb-5">
         <div class="card-body">
-            유사강의 목록 들어갈듯
+            <h5 class="card-title">{{similar_lecture.0}}</h5>  
+            <p class="card-text">{{similar_lecture.1}}</p>
+            <p class="card-text">{{similar_lecture.2}}</p>
         </div>
     </div>
+    {% endfor %}
 
 </div>
 {%endblock%}
