@@ -6,15 +6,9 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		{% load compress %} {% compress css %}
-		<!-- <link
-			type="text/x-scss"
-			href="{% static 'theme.scss' %}"
-			rel="stylesheet"
-			media="screen"
-			charset="utf-8"
-		/> -->
-		{% endcompress %} {% block extra_head %} {% endblock %}
+		{% load sass_tags %}
+		<link href="{% sass_src 'theme.scss' %}" rel="stylesheet" type="text/css" />
+		{% block extra_head %} {% endblock %}
 		<title>{% block head_title %}{% endblock %}</title>
 	</head>
 

@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'main',
-    'compressor',
+    # 'compressor',
+    'sass_processor',
     
     'django.contrib.sites',
     'allauth',
@@ -138,17 +139,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'main', 'static')
-]
-STATICFILES_FINDERS = [
-    'compressor.finders.CompressorFinder'
+    os.path.join(BASE_DIR, 'main', 'static'),
+    os.path.join(BASE_DIR, 'scss_static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
+STATICFILES_FINDERS = (
+ 'django.contrib.staticfiles.finders.FileSystemFinder',
+ 'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+ 'sass_processor.finders.CssFinder',
 )
+
+SASS_PROCESSOR_ENABLED = True
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, "scss_static")
+SASS_PRECISION = 8
+SASS_OUTPUT_STYLE = 'compact'
