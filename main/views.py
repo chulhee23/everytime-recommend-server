@@ -35,7 +35,7 @@ def result(request):
             'result':result
             })
     elif professor != '' : #교수명만 검색시s
-        html_selector = 1
+        html_selector = 0
         result = data_analyser.find_similar_prof(professor)
         context.update({
             'professor':professor,

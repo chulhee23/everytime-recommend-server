@@ -2,30 +2,41 @@
 
 {%block content %}
 <div class="container">
-    
-    <h2 class="my-5 text-center">'{{ professor }}'교수님의 '{{ lecture }}'를 검색하셨습니다.</h2>
+
+    <h2 class="my-5 text-center text-dark">
+        <span class="font-weight-bold">'{{ professor }}'</span>교수님의 <span class="font-weight-bold">'{{ lecture }}'</span>를 검색하셨습니다.
+    </h2>
     <!-- {{result}} -->
-    <p class="">해시태그</p>
-    <p class="">{{result.hash_tags}}</p>
-    <div class="btn-group">
-      <div class="btn btn-outline-primary">
-        강의 분석
-      </div>
-      <div class="btn btn-outline-primary">
-        교수 분석
-      </div>
-        
-    </div>
-    
-    {% for similar_lecture in result.similar %}
-    <div class="card mt-3 mb-5">
-        <div class="card-body">
-            <h5 class="card-title">{{similar_lecture.0}}</h5>  
-            <p class="card-text">{{similar_lecture.1}}</p>
-            <p class="card-text">{{similar_lecture.2}}</p>
+
+    <p class="hash_tag text-center font-weight-bold text-black-50">
+        {% for hash_tag in result.hash_tags %}
+        #{{hash_tag}}
+        {% endfor %}
+    </p>
+
+
+    <div class="btutton text-center mb-5">
+        <div class="btn btn-outline-primary text-white bg-primary shadow mx-3 px-4 py-2 rounded-pill">
+            강의 분석
+        </div>
+        <div class="btn btn-outline-secondary text-white bg-secondary shadow mx-3 px-4 py-2 rounded-pill">
+            교수 분석
         </div>
     </div>
-    {% endfor %}
+
+    <div class="similar_lecture">
+        <h5 class="text-black">유사강의 목록</h5>
+        <div class="card">
+            <ul class="list-group list-group-flush">
+                {% for similar_lecture in result.similar %}
+                <li class="list-group-item"><a class="text-dark" href="">{{similar_lecture.1}}<span class="">교수님</span> '{{similar_lecture.0}}'</a> </li>
+                <!-- 유사 강의 review -->
+                <!-- <p class="card-text">{{similar_lecture.2}}</p>  -->
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
 
 </div>
 {%endblock%}

@@ -1,23 +1,27 @@
-{% extends 'base.html' %}
+{% extends 'base_background.html' %}
 
 {% block content %}
 
-<div class="container">
+<!-- <div class="container"> -->
     <div class="text-center mt-5">
-        <div class="my-5">
-            <h1>빅장고</h1>
-        </div>
-        <div class="form-group">
-            <form action="{% url 'result' %}" method="GET">
-              <div class="form-group">
-                <input class="form-control my-4" name="lecture" placeholder="강의명을 입력하세요" required=true>
-                <input class="form-control" name="professor" placeholder="교수명을 입력하세요" required=true>
-              </div>
-              <!-- <input id="searchBt" type="submit" value="asdasasd" class="fa-lg"> -->
-              <button type="submit" class="btn btn-primary btn-block">검색하기</button>
-            </form>
+        <div class="row">
+            <div class="col-sm text-white font-weight-bold sticky-bottom">
+                <h1>얘 이름 진짜 시츄야?</h1>
+                <p>ㅜ머ㅜ머뭠를 토대로 강의 유사도를 분석해 시간표를 추천해주는 서비스 입니다</p>
+            </div>
+            <div class="col-sm form-group px-5">
+                <form action="{% url 'result' %}" method="GET">
+                    <div class="form-group">
+                        <!-- required = true(필수로 입력해야하느 조건) 일단 없앴어용 -->
+                        <input class="form-control py-4 my-4 rounded-pill" name="lecture" placeholder="강의명을 입력하세요">
+                        <input class="form-control py-4 rounded-pill" name="professor" placeholder="교수명을 입력하세요" >
+                    </div>
+                    <!-- <input id="searchBt" type="submit" value="asdasasd" class="fa-lg"> -->
+                    <button type="submit" class="btn btn-primary btn-block">검색하기</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+<!-- </div> -->
 
 {% endblock %}

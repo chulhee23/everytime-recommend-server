@@ -2,22 +2,45 @@
 
 {%block content %}
 <div class="container">
-    <h1>'{{ professor }}'교수님을 검색하셨습니다.</h1>
-    <h3>해쉬태ㅐㅐ태ㅐㅐ그</h3>
+    <h2 class="my-5 text-center text-dark">
+        <span class="font-weight-bold">'{{ professor }}'</span>교수님을 검색하셨습니다.
+    </h2>
 
-    <div class="button"><button type="submit" class="btn btn-primary">교수님 분석</button></div>
+    <p class="hash_tag text-center font-weight-bold text-black-50">
+        {% for hash_tag in result.hash_tags %}
+        #{{hash_tag}}
+        {% endfor %}
+    </p>
 
-    <div class="ProfCard_wrapper">
-        <div class="card">
-            <div class="card-body">
-                유사 교수 목록 들어갈듯
+    <div class="btutton text-center mb-5">
+        <div class="btn btn-outline-secondary text-white bg-secondary px-5 py-2 shadow rounded-pill">
+            세부 분석
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm similar_professor">
+            <h5 class="text-black text-center">유사교수 목록</h5>
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        {% for similar_lecture in result.similar %}
+                        <li class="list-group-item">{{similar_lecture.0}}교수님</a> </li>
+                        <!-- 유사 강의 review -->
+                        <!-- <p class="card-text">{{similar_lecture.2}}</p>  -->
+                        {% endfor %}
+                    </ul> 
             </div>
         </div>
-
-        <div class="card">
-            <div class="card-body">
-                했던 강의목록 들어갈듯
-            </div>
+        <div class="col-sm before_lecture">
+            <h5 class="text-black text-center">했던강의 목록(아직 아님/누가 테두리 좀 없애조,,)</h5>
+                <div class="card border-secondary">
+                    <ul class="list-group list-group-flush">
+                        {% for similar_lecture in result.similar %}
+                        <li class="list-group-item">{{similar_lecture.0}}교수님</a> </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            
         </div>
     </div>
 
