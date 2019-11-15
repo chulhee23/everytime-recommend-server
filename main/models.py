@@ -19,5 +19,5 @@ class Lecture(models.Model):
     competitor = models.CharField(max_length=255, default="0")
 
 
-class Review(models.Mode):
-    pass
+# class Review(models.Mode):
+#     pass

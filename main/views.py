@@ -38,10 +38,8 @@ def result(request):
             context.update({
                 'lecture':lecture,
                 'professor':professor,
-                'result':result
+                'result':result,
             })
-       
-
     elif professor != '' : #교수명만 검색시s
         html_selector = 0
         result = data_analyser.find_similar_prof(professor)
