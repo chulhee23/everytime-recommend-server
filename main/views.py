@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .module import Web_module
+from django.core.paginator import Paginator
 # Create your views here.
 
 
@@ -27,13 +28,20 @@ def result(request):
     htmls = ['result/prof.html', 'result/both.html', 'result/noMatch.html']
     html_selector = 0
     if lecture and professor: # 강의명으로 검색 시
-        result = data_analyser.find_similar_lecture(lecture, professor)
-        html_selector = 1
-        context.update({
-            'lecture':lecture,
-            'professor':professor,
-            'result':result
-        })
+        try:
+            result = data_analyser.find_similar_lecture(lecture, professor)
+        except:
+            alert ="교수명과 강의명이 일치하지 않습니다."
+            return render(request, "home.html", {'alert' : alert})
+        else:
+            html_selector = 1
+            context.update({
+                'lecture':lecture,
+                'professor':professor,
+                'result':result
+            })
+       
+
     elif professor != '' : #교수명만 검색시s
         html_selector = 0
         result = data_analyser.find_similar_prof(professor)
@@ -41,5 +49,8 @@ def result(request):
             'professor':professor,
             'result':result
             })
+    elif professor == '' and lecture == '' :
+        alert ="교수명과 강의명을 입력하세요."
+        return render(request, "home.html", {'alert' : alert})
     
     return render(request, htmls[html_selector], context)

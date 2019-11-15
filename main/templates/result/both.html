@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
 {%block content %}
-<div class="container">
 
-    <h2 class="my-5 text-center text-dark">
-        <span class="font-weight-bold">'{{ professor }}'</span>교수님의 <span class="font-weight-bold">'{{ lecture }}'</span>를 검색하셨습니다.
+<div class="container my-5">
+
+    <h2 class="mb-5 text-center text-dark">
+        <span class="font-weight-bold">'{{ professor }}'</span>교수님의 <span
+            class="font-weight-bold">'{{ lecture }}'</span>를 검색하셨습니다.
     </h2>
     <!-- {{result}} -->
 
@@ -25,18 +27,20 @@
     </div>
 
     <div class="similar_lecture">
-        <h5 class="text-black">유사강의 목록</h5>
-        <div class="card">
+        <h5 class="text-black text-center">유사강의 목록</h5>
+        <div class="card" >
             <ul class="list-group list-group-flush">
                 {% for similar_lecture in result.similar %}
-                <li class="list-group-item"><a class="text-dark" href="">{{similar_lecture.1}}<span class="">교수님</span> '{{similar_lecture.0}}'</a> </li>
+                <li class="list-group-item name">
+                    <a class="text-dark" href="?lecture={{similar_lecture.0}}&professor={{similar_lecture.1}}">
+                        {{similar_lecture.1}}교수님 '{{similar_lecture.0}}'
+                    </a>
+                </li>
                 <!-- 유사 강의 review -->
                 <!-- <p class="card-text">{{similar_lecture.2}}</p>  -->
                 {% endfor %}
             </ul>
         </div>
     </div>
-
-
 </div>
 {%endblock%}

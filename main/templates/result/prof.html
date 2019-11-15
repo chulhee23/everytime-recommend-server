@@ -24,9 +24,9 @@
             <div class="card">
                 <ul class="list-group list-group-flush">
                     {% for similar_lecture in result.similar %}
-                    <li class="list-group-item">{{similar_lecture.0}}교수님</a> </li>
-                    <!-- 유사 강의 review -->
-                    <!-- <p class="card-text">{{similar_lecture.2}}</p>  -->
+                    <li class="list-group-item">
+                        <a class="text-dark" href="?lecture=&professor={{similar_lecture.0}}">{{similar_lecture.0}}교수님</a> 
+                    </li>
                     {% endfor %}
                 </ul>
             </div>
