@@ -1,6 +1,7 @@
 # Created by https://www.gitignore.io/api/python,django
 # Edit at https://www.gitignore.io/?templates=python,django
 
+main/module/
 venv
 
 ### Django ###
