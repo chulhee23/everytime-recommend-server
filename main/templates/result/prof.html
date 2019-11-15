@@ -21,26 +21,25 @@
     <div class="row">
         <div class="col-sm similar_professor">
             <h5 class="text-black text-center">유사교수 목록</h5>
-                <div class="card">
-                    <ul class="list-group list-group-flush">
-                        {% for similar_lecture in result.similar %}
-                        <li class="list-group-item">{{similar_lecture.0}}교수님</a> </li>
-                        <!-- 유사 강의 review -->
-                        <!-- <p class="card-text">{{similar_lecture.2}}</p>  -->
-                        {% endfor %}
-                    </ul> 
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    {% for similar_lecture in result.similar %}
+                    <li class="list-group-item">{{similar_lecture.0}}교수님</a> </li>
+                    <!-- 유사 강의 review -->
+                    <!-- <p class="card-text">{{similar_lecture.2}}</p>  -->
+                    {% endfor %}
+                </ul>
             </div>
         </div>
         <div class="col-sm before_lecture">
-            <h5 class="text-black text-center">했던강의 목록(아직 아님/누가 테두리 좀 없애조,,)</h5>
-                <div class="card border-secondary">
-                    <ul class="list-group list-group-flush">
-                        {% for similar_lecture in result.similar %}
-                        <li class="list-group-item">{{similar_lecture.0}}교수님</a> </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            
+            <h5 class="text-black text-center">했던강의 목록(아직 아님)</h5>
+            <div class="card" style="border-left-color: #4a6cd3;">
+                <ul class="list-group list-group-flush">
+                    {% for similar_lecture in result.similar %}
+                    <li class="list-group-item">{{similar_lecture.0}}교수님</a> </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 

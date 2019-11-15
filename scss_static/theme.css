@@ -2394,6 +2394,8 @@ body { font-family: 'NanumSquare', sans-serif; }
 
 .form-control { box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); }
 
+h1 { font-size: 1000px; }
+
 .card { box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); border-left-width: 5px; border-left-color: #f26549; }
 
 /*# sourceMappingURL=theme.css.map */

@@ -2,26 +2,36 @@
 
 {% block content %}
 
-<!-- <div class="container"> -->
-    <div class="text-center mt-5">
-        <div class="row">
-            <div class="col-sm text-white font-weight-bold sticky-bottom">
-                <h1>얘 이름 진짜 시츄야?</h1>
-                <p>ㅜ머ㅜ머뭠를 토대로 강의 유사도를 분석해 시간표를 추천해주는 서비스 입니다</p>
-            </div>
-            <div class="col-sm form-group px-5">
-                <form action="{% url 'result' %}" method="GET">
-                    <div class="form-group">
-                        <!-- required = true(필수로 입력해야하느 조건) 일단 없앴어용 -->
-                        <input class="form-control py-4 my-4 rounded-pill" name="lecture" placeholder="강의명을 입력하세요">
-                        <input class="form-control py-4 rounded-pill" name="professor" placeholder="교수명을 입력하세요" >
-                    </div>
-                    <!-- <input id="searchBt" type="submit" value="asdasasd" class="fa-lg"> -->
-                    <button type="submit" class="btn btn-primary btn-block">검색하기</button>
-                </form>
+<div class="container shared-height"  style="height: 100vh;">
+    
+    <div class="row align-items-center shared-height"  style="height: 100vh;">
+        <div class="col-md-6 col-sm-12 mt-5">
+            <div class="left_wrapper ">
+                
+                <h1 class="font-weight-bold text-white" style="font-size: 4rem; text-shadow: 2px 2px #bbb;">시간표 추천</h1>
+                <p class="font-weight-light mt-3 text-white">ㅜ머ㅜ머뭠를 토대로 강의 유사도를 분석해 시간표를 추천해주는 서비스 입니다.그래서
+                    어쩌고저쩌고 아배고프다아아ㅏ나ㅏㅏ아아앙아ㅏ앙아ㅏㅇ아 이거 발표가 언제랬찌?</p>
+                
             </div>
         </div>
+        <div class="col-md-6 col-sm-12 form-group mt-5">
+            <div class="right_wrapper">
+                <div class="card p-5" style="border-color: white; height: 200%;">
+                    <form action="{% url 'result' %}" method="GET">
+                        <div class="form-group">
+                            <!-- required = true(필수로 입력해야하느 조건) 일단 없앴어용 -->
+                            <input class="form-control py-4 my-4 rounded-pill" name="lecture" placeholder="강의명을 입력하세요">
+                            <input class="form-control py-4 rounded-pill" name="professor" placeholder="교수명을 입력하세요">
+                        </div>
+                        <!-- <input id="searchBt" type="submit" value="asdasasd" class="fa-lg"> -->
+                        <button type="submit" class="btn btn-primary btn-block">검색하기</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </div>
-<!-- </div> -->
+    
+</div>
 
 {% endblock %}

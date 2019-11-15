@@ -24,16 +24,16 @@ def result(request):
     professor = request.GET.get('professor') #교수명 검색 value
     context = dict()
 
-    htmls = ['result/prof.html', 'result/both.html']
+    htmls = ['result/prof.html', 'result/both.html', 'result/noMatch.html']
     html_selector = 0
     if lecture and professor: # 강의명으로 검색 시
-        html_selector = 1
         result = data_analyser.find_similar_lecture(lecture, professor)
+        html_selector = 1
         context.update({
             'lecture':lecture,
             'professor':professor,
             'result':result
-            })
+        })
     elif professor != '' : #교수명만 검색시s
         html_selector = 0
         result = data_analyser.find_similar_prof(professor)
@@ -41,4 +41,5 @@ def result(request):
             'professor':professor,
             'result':result
             })
+    
     return render(request, htmls[html_selector], context)
