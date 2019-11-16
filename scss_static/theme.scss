@@ -12,21 +12,23 @@ $dark: #353535;
 @import 'bootstrap/scss/bootstrap.scss';
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
 
-
-
-body {
+body{
     font-family: 'NanumSquare', sans-serif;
+    height: 100vh;
 }
 
 //home.html
 .form-control {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
-// h1{
-//     font-size: 1000px;
-// }
-
-
+.bg_img {
+    height: 100vh;
+    background-image: url("../static/bg.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
 
 //result/both.html
 
@@ -36,6 +38,8 @@ body {
     border-left-width: 5px;
     border-left-color: #f26549;
 }
+//signup.html
+
 
 
 

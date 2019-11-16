@@ -1,26 +1,51 @@
-$primary: #df6e52;
-$secondary: yellow;
+@charset "UTF-8";
+$primary: #f26549;
+$secondary: #4a6cd3;
+$dark: #353535;
 
 :root {
-  --theme-color: #df6e52;
-  --theme-color-2: #E4A972;
+  --theme-color: #f26549;
+  --theme-color-2: #4a6cd3;
+  --theme-color-3: #353535;
 }
 
 @import 'bootstrap/scss/bootstrap.scss';
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
+body {
+    font-family: 'NanumSquare', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
 
 //home.html
-.background{
-    // background: linear-gradient(-135deg, #E4A972, #466E88) fixed;
-    // background: radial-gradient(#F2B9A1, #EA6264) fixed;
-    background: linear-gradient(to right, $primary, var(--theme-color-2)) fixed;
+.form-control {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.bg_img {
+    height: 100vh;
+    background-image: url("../static/bg.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.2);
+    z-index: 2;
 }
 
 //result/both.html
-.aa {
-    border-width: thick;
+
+//result/prof.html
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-left-width: 5px;
+    border-left-color: #f26549;
+}
+//signup.html
+.account_bg {
+    background-image: url("../static/bg.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
 }
 
 
-
-//result/prof.html
 

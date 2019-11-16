@@ -43,7 +43,7 @@ def result(request):
             context.update({
                 'lecture':lecture,
                 'professor':professor,
-                'result':result
+                'result':result,
             })
 
 

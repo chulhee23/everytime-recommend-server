@@ -11,46 +11,40 @@
     <link href="{% sass_src 'theme.scss' %}" rel="stylesheet" type="text/css" />
     {% block extra_head %} {% endblock %}
     <title>{% block head_title %}{% endblock %}</title>
-    
+
 </head>
 
 <body class="shared-height" style="height: 100vh;">
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-			<a class="navbar-brand" href="#">DnA</a>
-			<button
-				class="navbar-toggler"
-				type="button"
-				data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent"
-				aria-expanded="false"
-				aria-label="Toggle navigation"
-			>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="position: fixed;">
+        <a class="navbar-brand" href="#">DnA</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
                     <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    {% if user.is_authenticated %}  
-                    <li class="nav-item">
-                        <a href="{% url 'account_email' %}">Change E-mail</a>
-                    </li>
-                    <li class="nav-item">
-                    <a href="{% url 'account_logout' %}">Sign Out</a>
-                    </li>
-                    {% else %}  
-                    <li class="nav-item">
-                    <a href="{% url 'account_login' %}">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                    <a href="{% url 'account_signup' %}">Sign Up</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="text-white" href="{% url 'account_email' %}">Change E-mail</a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-white" href="{% url 'account_logout' %}">Sign Out</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="text-white" href="{% url 'account_login' %}">로그인하기</a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-white" href="{% url 'account_signup' %}">회원가입하기</a>
+                </li>
+
                 {% endif %}
-                </ul>
-            </div>
-		</nav> -->
+            </ul>
+        </div>
+    </nav> -->
 
     {% block content %}
     {% endblock %}
@@ -77,14 +71,11 @@
 
 <style>
     body {
-        /* height: 100vh;
+        height: 100vh;
         margin: 0;
-        background: linear-gradient(#f26549 100%, #ffffff 50%); */
         background-color: #f26549;
-        
+
     }
-
-
 </style>
 
 </html>
