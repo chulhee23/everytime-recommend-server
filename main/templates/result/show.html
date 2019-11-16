@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
+
 {%block content %}
+
 <div class="container">
   <div class="card py-5 px-2 my-5">
     <h3 class="text-center">{{first_lecture.name}}</h3>
@@ -19,8 +21,24 @@
 
       <ul class="list-group none" style="display: none">
       {% for lecture in lectures %}
-        <li class="list-group-item">
-          {{lecture.time}}
+        <li class="list-group-item" id="lecture-{{lecture.id}}">
+          <div class="row">
+            <div class="col-sm-11">
+              {{lecture.time}}
+            </div>
+            <div class="col-sm-1">
+              <a href="{% url 'like' lecture.id %}">
+                {% if lecture.id in likes_list %}
+                  <i class="fas fa-heart"></i>
+                {% else %}
+                  <i class="far fa-heart"></i>
+                {% endif %}
+              </a>
+
+
+            </div>
+          </div>
+
         </li>
       {% endfor %}
       </ul>
