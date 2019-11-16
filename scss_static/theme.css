@@ -2394,8 +2394,11 @@ body { font-family: 'NanumSquare', sans-serif; }
 
 .form-control { box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); }
 
+<<<<<<< HEAD
 .bg_img { height: 100vh; background-image: url("../static/bg.jpg"); background-repeat: no-repeat; background-size: cover; box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.2); }
 
+=======
+>>>>>>> 6e574f6e7f78ab40f843830fbe632652abf7f020
 .card { box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); border-left-width: 5px; border-left-color: #f26549; }
 
 /*# sourceMappingURL=theme.css.map */

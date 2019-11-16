@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -18,6 +18,9 @@ class Lecture(models.Model):
     semester = models.CharField(max_length=255)
     competitor = models.CharField(max_length=255, default="0")
 
+class Like(models.Model):
+    lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
-# class Review(models.Mode):
+# class Review(models.Model):
 #     pass

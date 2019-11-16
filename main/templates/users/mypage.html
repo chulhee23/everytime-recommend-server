@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{%block content %}
+<div class="container py-5">
+  <h2 class="" >나의 관심 강의 목록</h2>
+  <div class="row mt-1 mb-5">
+    {% for like in likes %}
+      <div class="col-sm-12 col-md-4 pt-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{like.lecture.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{like.lecture.prof}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{like.lecture.class_code}}</h6>
+            <p class="card-text">
+              {{like.lecture.time}}
+            </p>
+            <a href="{% url 'like' like.lecture.id %}" class="card-link btn btn-outline-danger float-right">제거하기</a>
+
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{%endblock%}
+

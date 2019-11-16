@@ -25,7 +25,7 @@ SECRET_KEY = '-5s@r2p&lcfpixqf8l(ex-)my29c62m0x^qq3me@6cn&oap9fc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 SITE_ID = 2
 
@@ -48,11 +48,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'main',
     # 'compressor',
     'sass_processor',
-    
+
     'django.contrib.sites',
     'allauth',
     'allauth.account',
