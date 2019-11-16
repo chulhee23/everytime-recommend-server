@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .module import Web_module
 from django.core.paginator import Paginator
 from .models import *
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -15,12 +16,15 @@ def searchByProfessor(professor_name):
     return data_analyser.find_similar_prof(professor_name)
 
 
-def home(request) :
+def home(request):
+
+
     return render(request, 'home.html')
 
 def temp(request):
     return render(request, 'temp.html')
 
+@login_required
 def result(request):
     lecture = request.GET.get('lecture') #강의명 검색 value
     professor = request.GET.get('professor') #교수명 검색 value
