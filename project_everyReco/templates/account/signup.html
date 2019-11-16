@@ -10,15 +10,17 @@
         <!-- <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign
                 in</a>.{% endblocktrans %}</p>
                 <br> -->
-        <div class="card m-auto p-5" style="border-color: white; width: 50%;">
-            <h1 class="text-center pb-4">{% trans "회원가입하기" %}</h1>
+        <div class="card m-auto p-5" style="border-color: white; width: 50%; min-width: 300px;">
+            <h2 class="text-center pb-4 text-dark">{% trans "회원가입하기" %}</h2>
             <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
                 {% csrf_token %}
-                <div class="pt-4  py-0 rounded-pill"">{{form.username}}</div>
-                <div class="pt-4 rounded-pill">{{form.email}}</div>
-                <div class="pt-4 rounded-pill">{{form.password1}}</div>
-                <div class="py-4 rounded-pill">{{form.password2}}</div>
-                <!-- {{ form.as_p }} -->
+                <div class="form-group">
+                    <p id="username" class="pt-3">{{ form.username }}</p>
+
+                    <p id="email" class="pt-3">{{ form.email }}</p>
+                    <p id="password1" class="pt-3">{{ form.password1 }}</p>
+                    <p id="password2" class="py-3">{{ form.password2 }}</p>
+                </div>
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}

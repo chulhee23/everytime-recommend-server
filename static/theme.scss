@@ -14,11 +14,22 @@ $dark: #353535;
 
 body {
     font-family: 'NanumSquare', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 //home.html
 .form-control {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.bg_img {
+    height: 100vh;
+    background-image: url("../static/bg.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.2);
+    z-index: 2;
 }
 
 //result/both.html
@@ -29,7 +40,12 @@ body {
     border-left-width: 5px;
     border-left-color: #f26549;
 }
-
+//signup.html
+.account_bg {
+    background-image: url("../static/bg.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+}
 
 
 
