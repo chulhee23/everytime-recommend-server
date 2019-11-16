@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{%block content %}
+<div class="container">
+  <div class="card py-5 px-2 my-5">
+    <h3 class="text-center">{{first_lecture.name}}</h3>
+
+    <h5 class="text-center">{{first_lecture.prof}}</h5>
+    <hr>
+    <div class="card px-3 py-2">
+      <h4>상세 정보</h4>
+      <p class="my-2">강의 개수 : {{lectures.count}}</p>
+      <p class="">
+      리뷰 평균 : {{average}}
+      </p>
+    </div>
+    <div class="py-2">
+      <h5 class="btn btn-outline-warning btn-block list-trigger">강의 시간표(더보기)</h5>
+
+      <ul class="list-group none" style="display: none">
+      {% for lecture in lectures %}
+        <li class="list-group-item">
+          {{lecture.time}}
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+    <hr>
+    <div class="py-2">
+      <h5 class="btn btn-outline-warning btn-block review-trigger">리뷰(더보기)</h5>
+
+      <ul class="list-group none" style="display: none">
+      {% for review in result.review.tolist %}
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-sm-1" style="color:
+              {% if review.1 < 2 %}
+              red
+              {% elif review.1 > 3.5 %}
+              green
+              {% else %}
+              orange
+              {% endif %}
+            ">
+              {{review.1}}
+            </div>
+            <div class="col-sm-11">{{review.0}}</div>
+          </div>
+
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script>
+  $(".list-trigger").on("click", function(){
+    let $list = $(this).next();
+    if ($list.hasClass("none")){
+      $list.removeClass("none");
+      $(this).html("강의 시간표 (접기)");
+      $list.show();
+    } else {
+      $list.addClass("none");
+      $list.hide();
+      $(this).html("강의 시간표 (더보기)");
+    }
+  })
+  $(".review-trigger").on("click", function(){
+    let $list = $(this).next();
+    if ($list.hasClass("none")){
+      $list.removeClass("none");
+      $(this).html("리뷰 (접기)");
+      $list.show();
+    } else {
+      $list.addClass("none");
+      $list.hide();
+      $(this).html("리뷰 (더보기)");
+    }
+  })
+</script>
+{%endblock%}
+
