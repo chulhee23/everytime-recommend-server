@@ -7,7 +7,7 @@
   <div class="card py-5 px-2 my-5">
     <h3 class="text-center">{{first_lecture.name}}</h3>
 
-    <h5 class="text-center">{{first_lecture.prof}}</h5>
+    <h5 class="text-center"><a href="http://127.0.0.1:8000/show/?lecture=&professor={{first_lecture.prof}}">{{first_lecture.prof}}</a></h5>
     <hr>
     <div class="card px-3 py-2">
       <h4>상세 정보</h4>
@@ -97,7 +97,6 @@
             </div>
             <div class="col-sm-11">{{review.0}}</div>
           </div>
-
         </li>
       {% endfor %}
       </ul>

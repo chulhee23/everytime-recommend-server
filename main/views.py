@@ -3,18 +3,31 @@ from .module import Web_module
 from django.core.paginator import Paginator
 from .models import *
 from django.contrib.auth.decorators import login_required
-# Create your views here.
+from datetime import datetime
 
+
+now = datetime.now()
+semester = 0
+if 6 > now.month >= 3:
+    semester = 1  # 1학기
+elif 12 > now.month >=9:
+    semester = 2  # 2학기
+current_semester = "%s%s" % (now.year, semester)
 
 data_analyser = Web_module.similar()
 
 
 def searchByLecture(lecture_name, professor_name):
-    return data_analyser.find_similar_lecture(lecture_name, professor_name)
+    try:
+        return data_analyser.find_similar_lecture(lecture_name, professor_name)
+    except:
+        return {"error": "리뷰가 부족하여 데이터를 확인할 수 없습니다."}
 
 def searchByProfessor(professor_name):
-    return data_analyser.find_similar_prof(professor_name)
-
+    try:
+        return data_analyser.find_similar_prof(professor_name)
+    except:
+        return {"error": "존재하지 않는 교수입니다."}
 
 def home(request):
 
@@ -43,16 +56,19 @@ def result(request):
             context.update({
                 'lecture':lecture,
                 'professor':professor,
-                'result':result
+                'result':result,
             })
 
 
     elif professor != '' : #교수명만 검색시s
         html_selector = 0
         result = data_analyser.find_similar_prof(professor)
+        filter = Lecture.objects.filter(prof=professor).order_by('name')
+        lecture_of_prof = filter.values_list('name', flat=True).distinct()
         context.update({
             'professor':professor,
-            'result':result
+            'result':result,
+            'lectures':lecture_of_prof,
             })
     elif professor == '' and lecture == '' :
         alert ="교수명과 강의명을 입력하세요."
@@ -65,22 +81,37 @@ def result(request):
 def show(request):
     lecture = request.GET.get('lecture') #강의명 검색 value
     professor = request.GET.get('professor') #교수명 검색 value
-    result = data_analyser.find_similar_lecture(lecture, professor)
 
-    reviews = result["review"].tolist()
-    scores = 0
-    for review in reviews:
-        scores += review[1]
-    average = round(scores/len(reviews), 2)
+    context = dict()
+
+    html_selector = 0
+    htmls = ['result/show_lecture_detail.html', 'result/show_prof_detail.html']
+
+    if lecture:
+        html_selector = 0
+        result = data_analyser.find_similar_lecture(lecture, professor)
+
+        reviews = result["review"].tolist()
+        scores = 0
+        for review in reviews:
+            scores += review[1]
+        average = round(scores/len(reviews), 2)
 
 
-    lectures = Lecture.objects.filter(name=lecture, prof=professor)
-    first_lecture = Lecture.objects.filter(name=lecture, prof=professor)[0]
+        lectures = Lecture.objects.filter(name=lecture, prof=professor)
+        first_lecture = Lecture.objects.filter(name=lecture, prof=professor)[0]
 
-    likes_list = Like.objects.filter(user = request.user.id).values_list('lecture', flat=True).distinct()
+        likes_list = Like.objects.filter(user = request.user.id).values_list('lecture', flat=True).distinct()
+        context.update({"result": result, "first_lecture": first_lecture, "lectures": lectures, "average": average,
+         "likes_list": likes_list})
+    else:
+        html_selector = 1
+        result = data_analyser.find_similar_prof(professor)
 
-    return render(request, 'result/show.html', {"result": result, "first_lecture": first_lecture, "lectures": lectures, "average": average, "likes_list": likes_list})
-
+        filter = Lecture.objects.filter(prof=professor, semester__icontains=current_semester)
+        lectures = filter.values_list('name').distinct()
+        context.update({"result": result, "lectures": lectures})
+    return render(request, htmls[html_selector], context)
 
 
 def like(request, lecture_id):

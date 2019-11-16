@@ -1,47 +1,52 @@
 {% extends 'base.html' %}
 
-{%block content %}
-<div class="container">
-    <h2 class="my-5 text-center text-dark">
-        <span class="font-weight-bold">'{{ professor }}'</span>교수님을 검색하셨습니다.
-    </h2>
+{% block content %}
+    <div class="container">
+        <h2 class="my-5 text-center text-dark">
+            <span class="font-weight-bold">'{{ professor }}'</span>교수님을 검색하셨습니다.
+        </h2>
 
-    <p class="hash_tag text-center font-weight-bold text-black-50">
-        {% for hash_tag in result.hash_tags %}
-        #{{hash_tag}}
-        {% endfor %}
-    </p>
+        <p class="hash_tag text-center font-weight-bold text-black-50">
+            {% for hash_tag in result.hash_tags %}
+                #{{ hash_tag }}
+            {% endfor %}
+        </p>
 
-    <div class="btutton text-center mb-5">
-        <div class="btn btn-outline-secondary text-white bg-secondary px-5 py-2 shadow rounded-pill">
-            세부 분석
+        <div class="btutton text-center mb-5">
+            <a href="/show/?lecture=&professor={{ professor }}"
+               class="btn btn-outline-secondary text-white bg-secondary px-5 py-2 shadow rounded-pill">
+                세부 분석
+            </a>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-sm similar_professor">
-            <h5 class="text-black text-center">유사교수 목록</h5>
-            <div class="card">
-                <ul class="list-group list-group-flush">
-                    {% for similar_lecture in result.similar %}
-                    <li class="list-group-item">
-                        <a class="text-dark" href="?lecture=&professor={{similar_lecture.0}}">{{similar_lecture.0}}교수님</a> 
-                    </li>
-                    {% endfor %}
-                </ul>
+        <div class="row">
+            <div class="col-sm similar_professor">
+                <h5 class="text-black text-center">유사교수 목록</h5>
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        {% for similar_lecture in result.similar %}
+                            <li class="list-group-item">
+                                <a class="text-dark"
+                                   href="?lecture=&professor={{ similar_lecture.0 }}">{{ similar_lecture.0 }}교수님</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm before_lecture">
+                <h5 class="text-black text-center">했던강의 목록</h5>
+                <div class="card" style="border-left-color: #4a6cd3;">
+                    <ul class="list-group list-group-flush">
+                        {% for lecture in lectures %}
+                            <li class="list-group-item">
+                                <a class="text-dark"
+                                   href="?lecture={{ lecture }}&professor={{ professor }}">{{ lecture }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="col-sm before_lecture">
-            <h5 class="text-black text-center">했던강의 목록(아직 아님)</h5>
-            <div class="card" style="border-left-color: #4a6cd3;">
-                <ul class="list-group list-group-flush">
-                    {% for similar_lecture in result.similar %}
-                    <li class="list-group-item">{{similar_lecture.0}}교수님</a> </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
 
-</div>
-{%endblock%}
+    </div>
+{% endblock %}
