@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <div class="container">
+    <div class="card py-5 px-2 my-5">
+        <h3 class="text-center">{{ result.prof }} 교수님</h3>
+        <hr>
+        <div class="card px-3 py-2">
+            <h4>교수님 상세 정보</h4>
+            {% for key, value in result.detail.items %}
+                {% if  forloop.counter0 == 0 %}
+                    <p class="my-2">
+                        {{ key }} : {{ value }}
+                    </p>
+                {% else %}
+                    <p class="">
+                        {{ key }} : {{ value }}
+                    </p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="py-2">
+            <h5 class="btn btn-outline-warning btn-block list-trigger">유사한 교수님 (더보기)</h5>
+
+            <ul class="list-group none" style="display: none">
+                {% for prof in result.similar %}
+                    <li class="list-group-item" id="prof-{{ prof }}">
+                        <div class="row">
+                            <a href="http://127.0.0.1:8000/show/?lecture=&professor={{ prof.0 }}" class="col-sm-12">
+                                {{ prof.0 }}
+                            </a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr>
+        <div class="py-2">
+            <h5 class="btn btn-outline-warning btn-block review-trigger">현재 진행중인 강의 (더보기)</h5>
+
+            <ul class="list-group none" style="display: none">
+                {% for lecture in lectures %}
+                    <li class="list-group-item">
+                            <a class="col-sm-11" href="http://127.0.0.1:8000/result/?lecture={{ lecture.0 }}&professor={{ result.prof }}"
+                               class="col-sm-1">
+                                {{ lecture.0 }}
+                            </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script>
+        $(".list-trigger").on("click", function () {
+            let $list = $(this).next();
+            if ($list.hasClass("none")) {
+                $list.removeClass("none");
+                $(this).html("유사한 교수님 (접기)");
+                $list.show();
+            } else {
+                $list.addClass("none");
+                $list.hide();
+                $(this).html("유사한 교수님 (더보기)");
+            }
+        });
+        $(".review-trigger").on("click", function () {
+            let $list = $(this).next();
+            if ($list.hasClass("none")) {
+                $list.removeClass("none");
+                $(this).html("현재 진행중인 강의 (접기)");
+                $list.show();
+            } else {
+                $list.addClass("none");
+                $list.hide();
+                $(this).html("현재 진행중인 강의 (더보기)");
+            }
+        })
+
+
+        $(".like-trigger").on("click", function () {
+            let lectureId = $(this).attr("id");
+            console.log(lectureId + "lecture clicked!")
+            $.ajax({
+                url: `/like/${lectureId}`,
+                type: "GET",
+                success: function () {
+                    console.log("ajax success");
+                    $icon = $("#" + lectureId).children();
+                    console.log("icon: " + $icon);
+                    console.log($icon)
+                    if ($icon.hasClass("far")) {
+                        $($icon).removeClass("far");
+                        $($icon).addClass("fas");
+                    } else {
+                        $($icon).removeClass("fas");
+                        $($icon).addClass("far");
+                    }
+                }
+            });
+        })
+
+    </script>
+{% endblock %}
+
