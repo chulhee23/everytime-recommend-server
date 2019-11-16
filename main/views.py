@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .module import Web_module
 from django.core.paginator import Paginator
+from .models import *
 # Create your views here.
 
 
@@ -40,7 +41,7 @@ def result(request):
                 'professor':professor,
                 'result':result
             })
-       
+
 
     elif professor != '' : #교수명만 검색시s
         html_selector = 0
@@ -52,5 +53,26 @@ def result(request):
     elif professor == '' and lecture == '' :
         alert ="교수명과 강의명을 입력하세요."
         return render(request, "home.html", {'alert' : alert})
-    
+
     return render(request, htmls[html_selector], context)
+
+
+
+def show(request):
+    lecture = request.GET.get('lecture') #강의명 검색 value
+    professor = request.GET.get('professor') #교수명 검색 value
+    result = data_analyser.find_similar_lecture(lecture, professor)
+
+    reviews = result["review"].tolist()
+    scores = 0
+    for review in reviews:
+        scores += review[1]
+    average = round(scores/len(reviews), 2)
+
+
+    lectures = Lecture.objects.filter(name=lecture, prof=professor)
+    first_lecture = Lecture.objects.filter(name=lecture, prof=professor)[0]
+
+    return render(request, 'result/show.html', {"result": result, "first_lecture": first_lecture, "lectures": lectures, "average": average})
+
+
