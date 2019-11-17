@@ -3,6 +3,8 @@ from .module import Web_module
 from django.core.paginator import Paginator
 from .models import *
 from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 
 
@@ -17,8 +19,6 @@ def searchByProfessor(professor_name):
 
 
 def home(request):
-
-
     return render(request, 'home.html')
 
 def temp(request):

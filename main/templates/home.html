@@ -1,40 +1,48 @@
 {% extends 'base_background.html' %}
 
+{% load i18n %}
+{% load account socialaccount %}
+
 {% block content %}
+
 <!-- 강의명과 교수명 일치하지 않거나, 아무것도 입력하지 않을시 alert -->
 {% if alert %}
-<div class="alert alert-primary text-center " role="alert" style="position: fixed; top: 10px; left: 10%; width: 80%; z-index: 3;">
+<div class="alert alert-primary text-center " role="alert"
+    style="position: fixed; top: 10px; left: 10%; width: 80%; z-index: 3;">
     {{alert}}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 {% endif %}
-    <div class="row align-items-center">
-        <div class="col-md-4 col-sm-12">
-            <div class="left_wrapper ml-5">
-                <h1 class="font-weight-bold text-white text-left" style="font-size: 4rem;">시간표 추천</h1>
-                <p class="font-weight-light mt-3 text-white text-left" style="width: 60%;">(상세설명 들어갈 예정입니다)ㅜ머ㅜ머뭠를 토대로 강의 유사도를 분석해 시간표를 추천해주는 서비스 입니다.그래서
-                    어쩌고저쩌고 이 부분에 웹서비스에대한 간단한 설명이나 이 서비스를 만들게 된 동기?정도 들어가면 좋을 것 같습니다 ㅎㅎ
-                </p>
-            </div>
-        </div>
-        <div class="col-md-8 col-sm-12 form-group">
-            <div class="bg_img" style="padding-top: 23%;">
-                <div class="card m-auto py-4" style="border-color: white; width: 60%;">
-                    <form action="{% url 'result' %}" method="GET">
-                        <div class="form-group m-auto" style="width: 70%; min-width: 70%;">
-                            <!-- required = true(필수로 입력해야하느 조건) 일단 없앴어용 -->
-                            <input class="form-control py-4 my-4 rounded-pill" name="lecture" placeholder="강의명을 입력하세요">
-                            <input class="form-control py-4 mb-4 rounded-pill" name="professor" placeholder="교수명을 입력하세요">
-                        </div>
-                        <!-- <input id="searchBt" type="submit" value="asdasasd" class="fa-lg"> -->
-                        <button type="submit" class="btn btn-primary btn-block mx-auto mb-4" style="width: 70%; min-width: 70%;">검색하기</button>
-                    </form>
-                </div>
-            </div>
-
+<div class="row align-items-center">
+    <div class="col-md-4 col-sm-12">
+        <div class="left_wrapper ml-5">
+            <h1 class="font-weight-bold text-white text-left" style="font-size: 4rem;">시간표 추천</h1>
+            <p class="font-weight-light mt-3 text-white text-left" style="width: 60%;">(상세설명 들어갈 예정입니다)ㅜ머ㅜ머뭠를 토대로 강의
+                유사도를 분석해 시간표를 추천해주는 서비스 입니다.그래서
+                어쩌고저쩌고 이 부분에 웹서비스에대한 간단한 설명이나 이 서비스를 만들게 된 동기?정도 들어가면 좋을 것 같습니다 ㅎㅎ
+            </p>
         </div>
     </div>
+    <div class="col-md-8 col-sm-12 form-group">
+        <div class="bg_img" style="padding-top: 23%;">
+            <div class="card m-auto py-4" style="border-color: white; width: 60%; min-width: 300px;">
+                <form action="{% url 'result' %}" method="GET">
+                    <div class="form-group m-auto" style="width: 70%; min-width: 70%;">
+                        <!-- required = true(필수로 입력해야하느 조건) 일단 없앴어용 -->
+                        <input class="form-control py-4 my-4 rounded-pill" name="lecture" placeholder="강의명을 입력하세요">
+                        <input class="form-control py-4 mb-4 rounded-pill" name="professor" placeholder="교수명을 입력하세요">
+                    </div>
+                    <!-- <input id="searchBt" type="submit" value="asdasasd" class="fa-lg"> -->
+                    <button type="submit" class="btn btn-primary btn-block mx-auto mb-4"
+                        style="width: 70%; min-width: 70%;">검색하기</button>
+                </form>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
 
 {% endblock %}
