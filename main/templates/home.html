@@ -32,12 +32,12 @@
         </div>
         <div class="col-md-6 col-sm-12 form-group">
             <div class="right_wrapper">
-                <div class="card p-5" style="border-color: white; height: 200%;">
+                <div class="card p-5" style="border-color: white;">
                     <form action="{% url 'result' %}" method="GET">
                         <div class="form-group">
                             <!-- required = true(필수로 입력해야하느 조건) 일단 없앴어용 -->
-                            <input class="form-control py-4 my-4 rounded-pill" name="lecture" placeholder="강의명을 입력하세요">
-                            <input class="form-control py-4 rounded-pill" name="professor" placeholder="교수명을 입력하세요" required=true>
+                            <input class="form-control py-4 my-4 rounded-pill" name="lecture" placeholder="강의명을 입력하세요" id="lecture-input">
+                            <input class="form-control py-4 rounded-pill" name="professor" placeholder="교수명을 입력하세요" required=true id="professor-input">
                         </div>
                         <!-- <input id="searchBt" type="submit" value="asdasasd" class="fa-lg"> -->
                         <button type="submit" class="btn btn-primary btn-block">검색하기</button>
@@ -50,8 +50,5 @@
 </div>
 
 
-<style>
 
-
-</style>
 {% endblock %}
