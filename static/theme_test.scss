@@ -48,4 +48,36 @@ body {
 }
 
 
-
+.blue-circle {
+  background-color: var(--theme-color-2);
+  width: 13vx;
+  height: 13vx;
+  border-radius: 50%;
+  position: absolute;
+  top: 100px;
+  left: 3vx;
+}
+.orange-circle-top {
+  background-color: var(--theme-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 100px;
+}
+.orange-circle-bottom {
+  background-color: var(--theme-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 100px;
+}
+.black-circle-top {
+  background-color: var(--theme-color-3);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 100px;
+}
