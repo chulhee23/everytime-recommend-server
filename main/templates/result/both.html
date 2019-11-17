@@ -1,29 +1,32 @@
 {% extends 'base.html' %}
 
-{%block content %}
+{% block content %}
 
-<div class="container my-5">
+    <div class="container my-5">
 
-    <h2 class="mb-5 text-center text-dark">
-        <span class="font-weight-bold">'{{ professor }}'</span>교수님의 <span
-            class="font-weight-bold">'{{ lecture }}'</span>를 검색하셨습니다.
-    </h2>
-    <!-- {{result}} -->
+        <h2 class="mb-5 text-center text-dark">
+            <span class="font-weight-bold">'{{ professor }}'</span>교수님의 <span
+                class="font-weight-bold">'{{ lecture }}'</span>를 검색하셨습니다.
+        </h2>
+        <!-- {{result}} -->
 
-    <p class="hash_tag text-center font-weight-bold text-black-50">
-        {% for hash_tag in result.hash_tags %}
-        #{{hash_tag}}
-        {% endfor %}
-    </p>
+        <p class="hash_tag text-center font-weight-bold text-black-50">
+            {% for hash_tag in result.hash_tags %}
+                #{{ hash_tag }}
+            {% endfor %}
+        </p>
 
 
-      <div class="text-center mb-5">
-        <a href="/show/?lecture={{lecture}}&professor={{professor}}" class="btn btn-primary shadow mx-3 px-4 py-2 rounded-pill">
-          강의 분석
-        </a>
+        <div class="text-center mb-5">
+            <a href="/show/?lecture={{ lecture }}&professor={{ professor }}"
+               class="btn btn-primary shadow mx-3 px-4 py-2 rounded-pill">
+                강의 분석
+            </a>
 
-        <div class="btn btn-outline-secondary text-white bg-secondary shadow mx-3 px-4 py-2 rounded-pill">
-            교수 분석
+            <a href="/result/?lecture=&professor={{ professor }}"
+               class="btn btn-outline-secondary text-white bg-secondary shadow mx-3 px-4 py-2 rounded-pill">
+                교수 분석
+            </a>
         </div>
       </div>
 
@@ -41,5 +44,4 @@
             </ul>
         </div>
     </div>
-</div>
-{%endblock%}
+{% endblock %}
