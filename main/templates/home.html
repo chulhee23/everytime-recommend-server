@@ -19,10 +19,14 @@
 
     <div class="row align-items-center shared-height" style="height: 100vh;">
         <div class="col-md-6 col-sm-12">
-            <div class="left_wrapper ">
+            <div class="left_wrapper text-center">
                 <h1 class="font-weight-bold text-primary text-shadow" style="font-size: 4rem;">시간표 추천</h1>
-                <p class="font-weight-light mt-3 text-primary">
-                  교수님 이름, 혹은 강의명과 교수님 이름을 같이 입력해주세요!
+                <p class="font-weight-bold mt-3 text-primary">
+                  옵션1) 강의명 + 교수님 성함
+                  <br>
+                  옵션2) 교수님 성함
+                  <br>
+                  검색해주세요!
                 </p>
             </div>
         </div>
@@ -33,14 +37,13 @@
                         <div class="form-group">
                             <!-- required = true(필수로 입력해야하느 조건) 일단 없앴어용 -->
                             <input class="form-control py-4 my-4 rounded-pill" name="lecture" placeholder="강의명을 입력하세요">
-                            <input class="form-control py-4 rounded-pill" name="professor" placeholder="교수명을 입력하세요">
+                            <input class="form-control py-4 rounded-pill" name="professor" placeholder="교수명을 입력하세요" required=true>
                         </div>
                         <!-- <input id="searchBt" type="submit" value="asdasasd" class="fa-lg"> -->
                         <button type="submit" class="btn btn-primary btn-block">검색하기</button>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 
