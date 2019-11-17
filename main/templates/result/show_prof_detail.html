@@ -28,7 +28,7 @@
                 {% for prof in result.similar %}
                     <li class="list-group-item" id="prof-{{ prof }}">
                         <div class="row">
-                            <a href="http://127.0.0.1:8000/show/?lecture=&professor={{ prof.0 }}" class="col-sm-12">
+                            <a href="/show/?lecture=&professor={{ prof.0 }}" class="col-sm-12">
                                 {{ prof.0 }}
                             </a>
                         </div>
@@ -43,7 +43,7 @@
             <ul class="list-group none" style="display: none">
                 {% for lecture in lectures %}
                     <li class="list-group-item">
-                            <a class="col-sm-11" href="http://127.0.0.1:8000/result/?lecture={{ lecture.0 }}&professor={{ result.prof }}"
+                            <a class="col-sm-11" href="/result/?lecture={{ lecture.0 }}&professor={{ result.prof }}"
                                class="col-sm-1">
                                 {{ lecture.0 }}
                             </a>

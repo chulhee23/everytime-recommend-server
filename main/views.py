@@ -126,6 +126,7 @@ def like(request, lecture_id):
         like.save()
     else:
         likes.delete()
+    
     return redirect('mypage')
 
 
