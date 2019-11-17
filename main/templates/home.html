@@ -1,4 +1,4 @@
-{% extends 'base_background.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 <!-- 강의명과 교수명 일치하지 않거나, 아무것도 입력하지 않을시 alert -->
@@ -10,18 +10,23 @@
     </button>
 </div>
 {% endif %}
+
+<div class="blue-circle"></div>
+<div class="orange-circle-top"></div>
+<div class="orange-circle-bottom"></div>
+<div class="black-circle-top"></div>
 <div class="container shared-height" style="height: 100vh;">
 
     <div class="row align-items-center shared-height" style="height: 100vh;">
-        <div class="col-md-6 col-sm-12 mt-5">
+        <div class="col-md-6 col-sm-12">
             <div class="left_wrapper ">
-                <h1 class="font-weight-bold text-white" style="font-size: 4rem; text-shadow: 2px 2px #bbb;">시간표 추천</h1>
-                <p class="font-weight-light mt-3 text-white">
+                <h1 class="font-weight-bold text-primary text-shadow" style="font-size: 4rem;">시간표 추천</h1>
+                <p class="font-weight-light mt-3 text-primary">
                   교수님 이름, 혹은 강의명과 교수님 이름을 같이 입력해주세요!
                 </p>
             </div>
         </div>
-        <div class="col-md-6 col-sm-12 form-group mt-5">
+        <div class="col-md-6 col-sm-12 form-group">
             <div class="right_wrapper">
                 <div class="card p-5" style="border-color: white; height: 200%;">
                     <form action="{% url 'result' %}" method="GET">
@@ -41,4 +46,9 @@
 
 </div>
 
+
+<style>
+
+
+</style>
 {% endblock %}

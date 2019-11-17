@@ -62,9 +62,9 @@
             <div class="col-sm-1">
               <a href="#" class="like-trigger" id="{{lecture.id}}">
                 {% if lecture.id in likes_list %}
-                  <i class="fas fa-heart"></i>
+                  <i class="fas fa-heart float-right"></i>
                 {% else %}
-                  <i class="far fa-heart"></i>
+                  <i class="far fa-heart float-right"></i>
                 {% endif %}
               </a>
 
@@ -156,6 +156,7 @@
         }
       }
     });
+    return false;
   })
 
 </script>

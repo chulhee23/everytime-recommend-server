@@ -1,4 +1,4 @@
-{% extends "account/base.html" %}
+{% extends "base_background.html" %}
 
 {% load i18n %}
 {% load account socialaccount %}
@@ -7,22 +7,19 @@
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
-
 {% get_providers as socialaccount_providers %}
 
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+<!-- {% if socialaccount_providers %}
+<p class="text-white">{% blocktrans with site.name as site_name %}아직 ###의 회원이 아니시면, 먼저<a class="text-white"href="{{ signup_url }}">회원가입</a>을 진행해주세요.
+    for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
 <div class="socialaccount_ballot">
 
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
+    <ul class="socialaccount_providers">
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    </ul>
 
-  <div class="login-or">{% trans 'or' %}</div>
+    <div class="login-or">{% trans 'or' %}</div>
 
 </div>
 
@@ -30,17 +27,42 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
 {% else %}
 <p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
+    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %} -->
+<div class="container shared-height" style="height: 100vh;">
+    <div class="row align-items-center shared-height" style="height: 100vh;">
+        <div class="m-auto" style="width: 100%;">
+        <p class="text-white text-center">아직 ###의 회원이 아니시면,<br><a class="text-dark font-weight-bold"href="{{ signup_url }}">회원가입</a> 을 먼저 진행해주세요.</p>
+        <div class="card m-auto p-5" style="border-color: white; width: 50%; min-width: 300px;">
+            <h1 class="text-center pb-4 text-dark">{% trans "로그인하기" %}</h1>
+            <form class="login" method="POST" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                  {{ form.login }}
+                </div>
+                <div class="form-group">
+                  {{form.password}}
+                </div>
 
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form>
+                <p>{{ form.remember }} 아이디/비밀번호 저장하기</p>
+                {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <!-- <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "비밀번호찾기" %}</a> -->
+                <button type="submit" class="btn btn-primary btn-block">{% trans "로그인하기" %}</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script>
 
+  $( document ).ready(function(){
+    $("#id_login").addClass("form-control");
+    $("#id_password").addClass("form-control")
+  })
+</script>
 {% endblock %}
