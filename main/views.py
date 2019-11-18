@@ -30,7 +30,14 @@ def searchByProfessor(professor_name):
         return {"error": "존재하지 않는 교수입니다."}
 
 def home(request):
-    return render(request, 'home.html')
+    lecture_list = list(set(list(Lecture.objects.values_list('name', flat=True))))
+    professor_list = list(set(list(Lecture.objects.values_list('prof', flat=True))))
+
+    return render(request, 'home.html',
+        {
+            "lecture_list": lecture_list,
+            "professor_list": professor_list
+        })
 
 def temp(request):
     return render(request, 'temp.html')

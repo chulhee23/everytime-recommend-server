@@ -15,30 +15,21 @@
 </div>
 {% endif %}
 
-<div class="blue-circle"></div>
+<!-- <div class="blue-circle"></div>
 <div class="blue-circle2"></div>
 <div class="orange-circle-top"></div>
 <div class="orange-circle-bottom"></div>
-<div class="black-circle-top"></div>
+<div class="black-circle-top"></div> -->
 
 <div class="container shared-height" style="height: 100vh;">
 
     <div class="row align-items-center shared-height" style="height: 100vh;">
-        <div class="col-md-6 col-sm-12">
-            <div class="left_wrapper text-center">
-                <h1 class="font-weight-bold text-primary text-shadow" style="font-size: 4rem;">시간표 추천</h1>
-                <p class="font-weight-bold mt-3 text-primary">
-                  옵션1) 강의명 + 교수님 성함
-                  <br>
-                  옵션2) 교수님 성함
-                  <br>
-                  검색해주세요!
-                </p>
-            </div>
-        </div>
-        <div class="col-md-6 col-sm-12 form-group">
+
+        <div class="offset-md-2 col-md-8 col-sm-12 form-group">
+
             <div class="right_wrapper">
                 <div class="card p-5" style="border-color: white;">
+
                     <form action="{% url 'result' %}" method="GET">
                         <div class="form-group">
                             <!-- required = true(필수로 입력해야하느 조건) 일단 없앴어용 -->
@@ -49,6 +40,13 @@
                         <button type="submit" class="btn btn-primary btn-block">검색하기</button>
                     </form>
                 </div>
+                
+                <p class="font-weight-bold mt-3 text-primary text-center">
+                  옵션1) 강의명 + 교수님 성함
+                  <br>
+                  옵션2) 교수님 성함
+
+                </p>
             </div>
         </div>
 
