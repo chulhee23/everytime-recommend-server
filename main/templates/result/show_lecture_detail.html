@@ -10,28 +10,35 @@
     <h5 class="text-center"><a href="/show/?lecture=&professor={{first_lecture.prof}}">{{first_lecture.prof}}</a></h5>
     <hr>
     <div class="card px-3 py-2">
-      <h4>상세 정보</h4>
-      <p class="my-2">강의 개수 : {{lectures.count}}</p>
-      <p class="">
-        리뷰 평균 : {{average}}
-      </p>
-      <p class="">
-        수강 학기 : {{first_lecture.semester}}
-      </p>
-      <p class="">
-        {{first_lecture.weight}}
-      </p>
+      <div class="row">
+        <div class="col-md-6">
+          <h4>상세 정보</h4>
+          <p class="my-2">강의 개수 : {{lectures.count}}</p>
+          <p class="">
+            리뷰 평균 : {{average}}
+          </p>
+          <p class="">
+            수강 학기 : {{first_lecture.semester}}
+          </p>
+          <p class="">
+            {{first_lecture.weight}}
+          </p>
 
-      <p class="">
-        대상 : {{first_lecture.recommend_year}} 학년
-      </p>
-      <p class="">
-        에브리타임 링크 :
-        <a href="{{first_lecture.link}}" target="_blank">
-          {{first_lecture.link}}
-        </a>
+          <p class="">
+            대상 : {{first_lecture.recommend_year}} 학년
+          </p>
+          <p class="">
+            에브리타임 링크 :
+            <a href="{{first_lecture.link}}" target="_blank">
+              {{first_lecture.link}}
+            </a>
+          </p>
+        </div>
+        <div class="col-md-6" id="highchart">
 
-      </p>
+        </div>
+      </div>
+
 
 
 
@@ -106,9 +113,18 @@
 
 
 </div>
+
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
 <script>
   $(".list-trigger").on("click", function(){
     let $list = $(this).next();
@@ -158,6 +174,67 @@
     });
     return false;
   })
+
+  // Make monochrome colors
+var pieColors = (function () {
+    var colors = [],
+        base = Highcharts.getOptions().colors[0],
+        i;
+
+    for (i = 0; i < 10; i += 1) {
+        // Start out with a darkened base color (negative brighten), and end
+        // up with a much brighter color
+        if (i == 0 ){
+          colors.push("#f26549");
+        } else {
+          colors.push("#4a6cd3");
+        }
+
+    }
+    return colors;
+}());
+
+// Build the chart
+Highcharts.chart('highchart', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: '강의에 대한 긍정 비율'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            colors: pieColors,
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                distance: -50,
+                filter: {
+                    property: 'percentage',
+                    operator: '>',
+                    value: 4
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Share',
+        data: [
+            { name: '긍정', y: 61.41 },
+            { name: '부정', y: 38.59 }
+
+        ]
+    }]
+});
+$(".highcharts-button-symbol").hide()
 
 </script>
 {%endblock%}
