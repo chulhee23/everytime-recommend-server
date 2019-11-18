@@ -254,8 +254,8 @@ Highcharts.chart('highchart', {
     series: [{
         name: 'Share',
         data: [
-            { name: '긍정', y: 61.41 },
-            { name: '부정', y: 38.59 }
+            { name: '긍정', y: {{result.positive}} },
+            { name: '부정', y: 1-{{result.positive}} }
 
         ]
     }]
