@@ -21,22 +21,7 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <div class="py-2">
-            <h5 class="btn btn-outline-warning btn-block list-trigger">유사한 교수님 (더보기)</h5>
-
-            <ul class="list-group none" style="display: none">
-                {% for prof in result.similar %}
-                    <li class="list-group-item" id="prof-{{ prof }}">
-                        <div class="row">
-                            <a href="/show/?lecture=&professor={{ prof.0 }}" class="col-sm-12">
-                                {{ prof.0 }}
-                            </a>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <hr>
+        
         <div class="py-2">
             <h5 class="btn btn-outline-warning btn-block review-trigger">현재 진행중인 강의 (더보기)</h5>
 

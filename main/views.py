@@ -30,14 +30,7 @@ def searchByProfessor(professor_name):
         return {"error": "존재하지 않는 교수입니다."}
 
 def home(request):
-    lecture_list = list(set(list(Lecture.objects.values_list('name', flat=True))))
-    professor_list = list(set(list(Lecture.objects.values_list('prof', flat=True))))
-
-    return render(request, 'home.html',
-        {
-            "lecture_list": lecture_list,
-            "professor_list": professor_list
-        })
+    return render(request, 'home.html')
 
 def temp(request):
     return render(request, 'temp.html')
@@ -53,13 +46,8 @@ def result(request):
     if lecture and professor: # 강의명으로 검색 시
         try:
             result = data_analyser.find_similar_lecture(lecture, professor)
-
         except:
-            if len(Lecture.objects.filter(name=lecture, prof=professor)) == 0:
-                alert ="교수명과 강의명이 일치하지 않습니다."
-            else:
-                alert ="유사도가 분석된 강의가 없습니다."
-
+            alert ="교수명과 강의명이 일치하지 않습니다."
             return render(request, "home.html", {'alert' : alert})
         else:
             html_selector = 1
@@ -67,7 +55,6 @@ def result(request):
                 'lecture':lecture,
                 'professor':professor,
                 'result':result,
-
             })
 
 
@@ -137,7 +124,6 @@ def like(request, lecture_id):
         like.save()
     else:
         likes.delete()
-
     return redirect('mypage')
 
 
