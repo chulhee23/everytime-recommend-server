@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+{% load account socialaccount %}
+
 {% block content %}
+
 <!-- 강의명과 교수명 일치하지 않거나, 아무것도 입력하지 않을시 alert -->
 {% if alert %}
 <div class="alert alert-primary text-center" role="alert" style="position: fixed; top: 10px; left: 10%; width: 80%;">
@@ -12,9 +16,11 @@
 {% endif %}
 
 <div class="blue-circle"></div>
+<div class="blue-circle2"></div>
 <div class="orange-circle-top"></div>
 <div class="orange-circle-bottom"></div>
 <div class="black-circle-top"></div>
+
 <div class="container shared-height" style="height: 100vh;">
 
     <div class="row align-items-center shared-height" style="height: 100vh;">
@@ -45,10 +51,19 @@
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
 
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
 
+<script>
+$(function () {
+$('[data-toggle="popover"]').popover()
+})
+
+</script>
 {% endblock %}

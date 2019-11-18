@@ -67,7 +67,7 @@ def result(request):
                 'lecture':lecture,
                 'professor':professor,
                 'result':result,
-                
+
             })
 
 
@@ -161,3 +161,11 @@ def mypage(request):
     # return redirect('home')
     #
     #
+def search(request):
+    q = request.GET.get('q')
+    prof_q = data_analyser.search_tags_prof(q)
+    lecture_q = data_analyser.search_tags_lecture(q)
+    prof_list = list(prof_q.keys())
+    lecture_list = list(lecture_q.keys())
+
+    return render(request, 'result/search.html', {'q':q, 'prof_q':prof_q, 'lecture_q' : lecture_q, 'prof_list': prof_list, 'lecture_list': lecture_list})
