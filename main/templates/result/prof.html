@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <h2 class="my-5 text-center text-dark">
-            <span class="font-weight-bold">'{{ professor }}'</span>교수님을 검색하셨습니다.
+            '<span class="font-weight-bold text-secondary">{{ professor }}</span>'교수님을 검색하셨습니다.
         </h2>
 
         <p class="hash_tag text-center font-weight-bold text-black-50">
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-sm similar_professor">
                 <h5 class="text-black text-center">유사교수 목록</h5>
-                <div class="card">
+                <div class="card" style="border-left-color: #4a6cd3;">
                     <ul class="list-group list-group-flush">
                         {% for similar_lecture in result.similar %}
                             <li class="list-group-item">
@@ -35,7 +35,7 @@
             </div>
             <div class="col-sm before_lecture">
                 <h5 class="text-black text-center">했던강의 목록</h5>
-                <div class="card" style="border-left-color: #4a6cd3;">
+                <div class="card">
                     <ul class="list-group list-group-flush">
                         {% for lecture in lectures %}
                             <li class="list-group-item">

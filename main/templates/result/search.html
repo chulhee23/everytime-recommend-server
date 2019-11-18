@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <h2 class="mb-5 text-center text-dark">
+        <span class="font-weight-bold text-dark">#{{ q }}</span>를 검색하셨습니다.
+    </h2>
+    <!-- {{prof_q}}
+    <br>
+    {{lecture_q}} -->
+
+    <p class="hash_tag text-center font-weight-bold">
+        {% for hash_tag in result.hash_tags %}
+        <a class="text-black-50" href="#"> #{{ hash_tag }}</a>
+        {% endfor %}
+    </p>
+    <div class="row">
+        <div class="col-sm similar_professor">
+            <h5 class="text-black text-center">교수</h5>
+            <div class="card" style="border-left-color: #4a6cd3;">
+                <ul class="list-group list-group-flush">
+                    {% for prof in prof_list %}
+                    <li class="list-group-item">
+                        <a class="text-dark" href="/result?lecture=&professor={{ prof }}">{{ prof}}교수님</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm before_lecture">
+            <h5 class="text-black text-center">강의</h5>
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    {% for lecture in lecture_list %}
+                    <li class="list-group-item">
+                        <a class="text-dark" href="/result?lecture={{lecture.0}}&professor={{lecture.1}}">
+                            {{lecture.1 }}교수님 '{{lecture.0}}'
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

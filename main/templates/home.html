@@ -16,14 +16,17 @@
 {% endif %}
 
 <div class="blue-circle"></div>
+<div class="blue-circle2"></div>
 <div class="orange-circle-top"></div>
 <div class="orange-circle-bottom"></div>
 <div class="black-circle-top"></div>
+
 <div class="container shared-height" style="height: 100vh;">
 
     <div class="row align-items-center shared-height" style="height: 100vh;">
-        <div class="col-md-6 col-sm-12">
-            <div class="left_wrapper ">
+        <div class="col-md-5 col-sm-12">
+            <div class="left_wrapper">
+                    <!-- <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button> -->
                 <h1 class="font-weight-bold text-primary text-shadow" style="font-size: 4rem;">시간표 추천</h1>
                 <p class="font-weight-light mt-3 text-primary">
                   교수님 이름, 혹은 강의명과 교수님 이름을 같이 입력해주세요!
@@ -50,11 +53,15 @@
     </div>
 </div>
 
-</div>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
 
-<style>
+<script>
+$(function () {
+$('[data-toggle="popover"]').popover()
+})
 
-
-</style>
+</script>
 {% endblock %}
