@@ -53,6 +53,7 @@ def result(request):
     if lecture and professor: # 강의명으로 검색 시
         try:
             result = data_analyser.find_similar_lecture(lecture, professor)
+
         except:
             if len(Lecture.objects.filter(name=lecture, prof=professor)) == 0:
                 alert ="교수명과 강의명이 일치하지 않습니다."
@@ -66,6 +67,7 @@ def result(request):
                 'lecture':lecture,
                 'professor':professor,
                 'result':result,
+                
             })
 
 
