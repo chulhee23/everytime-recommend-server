@@ -8,7 +8,7 @@
 
         <p class="hash_tag text-center font-weight-bold text-black-50">
             {% for hash_tag in result.hash_tags %}
-                #{{ hash_tag }}
+            <a class="text-black-50" href="/result/search/?q={{hash_tag}}">   #{{ hash_tag }}</a>
             {% endfor %}
         </p>
 
