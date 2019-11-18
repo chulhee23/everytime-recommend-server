@@ -175,13 +175,24 @@
           `)
           setTimeout(function(){
             $(".alert").fadeOut("slow");
-          }, 1000);
+          }, 600);
 
           $($icon).removeClass("far");
           $($icon).addClass("fas");
 
         } else {
           // 이미 찜한 상태 => 취소
+          $("body").prepend(`
+            <div class="alert bg-danger text-white" role="alert" style="position: fixed; top: 20px; left: 10%; width: 80%; opacity: 0.8; z-index:999;">
+                관심강의에서 제거되었습니다.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+          `)
+          setTimeout(function(){
+            $(".alert").fadeOut("slow");
+          }, 600);
           $($icon).removeClass("fas");
           $($icon).addClass("far");
         }
