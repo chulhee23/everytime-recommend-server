@@ -26,8 +26,9 @@ SECRET_KEY = '-5s@r2p&lcfpixqf8l(ex-)my29c62m0x^qq3me@6cn&oap9fc'
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
 SITE_ID = 2
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = "optional"
 
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 LOGIN_REDIRECT_URL = "/"
@@ -40,7 +41,7 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-
+DEFAULT_FROM_EMAIL = 'gus7wn@gmail.com'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
