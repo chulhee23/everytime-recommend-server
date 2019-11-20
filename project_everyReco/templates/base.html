@@ -28,7 +28,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'mypage' %}">마이페이지(관심 강의 보기)</a>
         </li>
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             검색하기
           </a>
@@ -39,7 +39,7 @@
               <button class="btn btn-outline-primary my-sm-0" type="submit">Search</button>
             </form>
           </div>
-        </li>
+        </li> -->
 
         {% else %}
         <li class="nav-item">
@@ -53,8 +53,8 @@
       </ul>
 
       <form class="form-inline my-2 my-lg-0" action="{% url 'total_search' %}">
-        <input class="form-control mr-sm-2" type="search" name="queryset" placeholder="Search" aria-label="Search" required>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <input class="form-control mr-sm-2" type="search" name="queryset" placeholder="통합검색" aria-label="Search" required>
+        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">검색</button>
       </form>
     </div>
   </nav>

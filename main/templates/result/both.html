@@ -12,7 +12,7 @@
 
     <p class="hash_tag text-center font-weight-bold">
         {% for hash_tag in result.hash_tags %}
-        <a class="text-black-50" href="/result/search/?q={{hash_tag}}"> #{{ hash_tag }}</a>
+        <a class="text-black-50" href="/total-search/?queryset={{hash_tag}}"> #{{ hash_tag }}</a>
         {% endfor %}
     </p>
 
@@ -22,7 +22,7 @@
             class="btn btn-primary shadow mx-3 px-4 py-2 rounded-pill">
             상세 정보
         </a>
-        <a href="/result/?lecture=&professor={{ professor }}"
+        <a href="/show/?lecture=&professor={{ professor }}"
             class="btn btn-outline-secondary text-white bg-secondary shadow mx-3 px-4 py-2 rounded-pill">
             교수 정보
         </a>

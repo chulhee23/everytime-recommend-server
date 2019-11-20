@@ -54,7 +54,7 @@ def result(request):
         try:
             result = data_analyser.find_similar_lecture(lecture, professor)
         except:
-            alert ="교수명과 강의명이 일치하지 않습니다."
+            alert ="교수명과 강의명이 일치하지 않거나 유사도가 분석된 강의가 없습니다."
             return render(request, "home.html", {'alert' : alert})
         else:
             html_selector = 1
