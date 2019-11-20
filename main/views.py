@@ -154,11 +154,43 @@ def mypage(request):
     # return redirect('home')
     #
     #
-def search(request):
-    q = request.GET.get('q')
-    prof_q = data_analyser.search_tags_prof(q)
-    lecture_q = data_analyser.search_tags_lecture(q)
+
+
+def hashtag_search(keyword):
+    prof_q = data_analyser.search_tags_prof(keyword)
+    lecture_q = data_analyser.search_tags_lecture(keyword)
     prof_list = list(prof_q.keys())
     lecture_list = list(lecture_q.keys())
+    return {'q':keyword, 'prof_q':prof_q, 'lecture_q' : lecture_q, 'prof_list': prof_list, 'lecture_list': lecture_list}
 
-    return render(request, 'result/search.html', {'q':q, 'prof_q':prof_q, 'lecture_q' : lecture_q, 'prof_list': prof_list, 'lecture_list': lecture_list})
+
+def search(request):
+    q = request.GET.get('q')
+    ctx = hashtag_search(q)
+    return render(request, 'result/search.html', ctx)
+
+
+def total_search(request):
+    ctx = dict()
+    keyword = request.GET.get('queryset')
+
+    lectures = Lecture.objects.filter(name=keyword, semester__icontains=current_semester).order_by('prof').distinct()
+    lectures = list(set(map(lambda x: x.name + " " + x.prof, lectures)))
+    lectures = list(map(lambda x: [x.split()[0], x.split()[1]], lectures))
+
+    professors = searchByProfessor(keyword)
+    try:
+        if professors['error']:
+            professors = {}
+    except:
+        pass
+    hashtags = hashtag_search(keyword)
+    print(hashtags)
+    ctx.update({
+        'keyword': keyword,
+        'lectures': lectures,
+        'professors': professors,
+        'hashtags': hashtags,
+    })
+    return render(request, 'result/total_search.html', ctx)
+

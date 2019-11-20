@@ -27,4 +27,6 @@ urlpatterns = [
     path('like/<int:lecture_id>', main.views.like, name="like"),
     path('mypage/', main.views.mypage, name="mypage"),
     path('accounts/', include('allauth.urls')),
+
+    path('total-search/', main.views.total_search, name="total_search"),
 ]
