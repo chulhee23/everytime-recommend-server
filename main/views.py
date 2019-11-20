@@ -137,23 +137,7 @@ def like(request, lecture_id):
 def mypage(request):
     likes = Like.objects.filter(user = request.user.id)
     return render(request, "users/mypage.html", {"likes": likes})
-    #
-    # postLike = PostLike.objects.filter(likedpost=post_id)
-    # #라이커에 내가 있으면 그냥 리다이렉트
-    # for liker in postLike:
-    #     if liker.postliker == request.user:
-    #         return redirect('home')
-    #
-    # newLike = PostLike()
-    # newLike.postliker = request.user
-    # likedPost = get_object_or_404(Post, pk=post_id)
-    # newLike.likedpost = likedPost
-    # likedPost.like += 1
-    # likedPost.save()
-    # newLike.save()
-    # return redirect('home')
-    #
-    #
+
 
 
 def hashtag_search(keyword):
