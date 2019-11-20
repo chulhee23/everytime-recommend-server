@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% block content %}
+
+    <div class="container my-5">
+
+        <h2 class="mb-5 text-center text-dark">
+            <span class="font-weight-bold text-dark">통합검색</span>
+        </h2>
+
+        <div class="row">
+            <div class="col-sm similar_professor">
+                <h5 class="text-black text-center">'{{ keyword }}' 교수님 검색결과</h5>
+                <div class="card" style="border-left-color: #4a6cd3;">
+                    <ul class="list-group list-group-flush">
+                        {% if professors %}
+                            <li class="list-group-item">
+                                <a class="text-dark" href="/result?lecture=&professor={{ keyword }}">{{ keyword }}
+                                    교수님</a>
+                            </li>
+                        {% else %}
+                            <li class="list-group-item">
+                                <span class="text-dark">검색 결과가 존재하지 않습니다.</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm before_lecture">
+                <h5 class="text-black text-center">'{{ keyword }}' 강의 검색결과</h5>
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        {% if lectures %}
+                            {% for lecture in lectures %}
+                                <li class="list-group-item">
+                                    <a class="text-dark"
+                                       href="/result?lecture={{ lecture.0 }}&professor={{ lecture.1 }}">
+                                        {{ lecture.0 }} - {{ lecture.1 }}교수님
+
+                                        <span>#{{ lecture.2 }} </span>
+                                        <span>#{{ lecture.3 }} </span>
+                                        <span>#{{ lecture.4 }} </span>
+                                        <span>#{{ lecture.5 }} </span>
+                                        <span>#{{ lecture.6 }} </span>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <li class="list-group-item">
+                                <span class="text-dark">검색 결과가 존재하지 않습니다.</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <h2 class="mb-5 text-center text-dark">
+            <span class="font-weight-bold text-dark"></span>
+        </h2>
+        <div class="row">
+            <div class="col-sm similar_professor">
+                <h5 class="text-black text-center">'#{{ keyword }}'와(과) 연관된 교수님 검색결과</h5>
+                <div class="card" style="border-left-color: #4a6cd3;">
+                    <ul class="list-group list-group-flush">
+                        {% if hashtags.prof_list %}
+                            {% for prof in hashtags.prof_list %}
+                                <li class="list-group-item">
+                                    <a class="text-dark" href="/result?lecture=&professor={{ prof }}">
+                                        {{ prof }} 교수님
+                                        <span class="float-right">
+                                        {% for tag in hashtags.prof_q|get_item:prof %}
+                                            <span>#{{ tag }} </span>
+                                        {% endfor %}
+                                        </span></a>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <li class="list-group-item">
+                                <span class="text-dark">검색 결과가 존재하지 않습니다.</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm before_lecture">
+                <h5 class="text-black text-center">'#{{ keyword }}'와(과) 연관된 강의 검색결과</h5>
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        {% if hashtags.lecture_list %}
+                            {% for lecture in hashtags.lecture_list %}
+                                <li class="list-group-item">
+                                    <a class="text-dark"
+                                       href="/result?lecture={{ lecture.0 }}&professor={{ lecture.1 }}">
+                                        {{ lecture.0 }} - {{ lecture.1 }}교수님
+                                        <span class="float-right">
+                                        {% for tag in hashtags.lecture_q|get_item:lecture %}
+                                            <span>#{{ tag }} </span>
+                                        {% endfor %}
+                                        </span>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <li class="list-group-item">
+                                <span class="text-dark">검색 결과가 존재하지 않습니다.</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
