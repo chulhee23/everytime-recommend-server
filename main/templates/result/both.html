@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-
+{% load custom_tags %}
 {% block content %}
 
 <div class="container my-5">
 
     <h2 class="mb-5 text-center text-dark">
-        '<span class="font-weight-bold text-secondary">{{ professor }}</span>'교수님의
-        '<span class="font-weight-bold text-primary">{{ lecture }}</span>'를 검색하셨습니다.
+        <span class="font-weight-bold text-primary">{{ lecture }}</span> -
+        <span class="font-weight-bold text-secondary">{{ professor }}</span> 교수님
     </h2>
     <!-- {{result}} -->
 
@@ -18,16 +18,14 @@
 
 
     <div class="text-center mb-5">
-        <a href="/result/?lecture=&professor={{ professor }}"
-            class="btn btn-outline-secondary text-white bg-secondary shadow mx-3 px-4 py-2 rounded-pill">
-            교수 정보
-        </a>
-
         <a href="/show/?lecture={{ lecture }}&professor={{ professor }}"
             class="btn btn-primary shadow mx-3 px-4 py-2 rounded-pill">
             상세 정보
         </a>
-
+        <a href="/result/?lecture=&professor={{ professor }}"
+            class="btn btn-outline-secondary text-white bg-secondary shadow mx-3 px-4 py-2 rounded-pill">
+            교수 정보
+        </a>
     </div>
 
 
@@ -38,7 +36,7 @@
             {% for similar_lecture in result.similar %}
             <li class="list-group-item name">
                 <a class="text-dark" href="?lecture={{similar_lecture.0}}&professor={{similar_lecture.1}}">
-                    {{similar_lecture.1}}교수님 '{{similar_lecture.0}}'
+                    {{similar_lecture.0}} - {{similar_lecture.1}}교수님
                     <span class="float-right">
                         <span># {{similar_lecture.2}}</span>
                         <span># {{similar_lecture.3}}</span>
