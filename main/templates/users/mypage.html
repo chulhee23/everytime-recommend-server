@@ -10,16 +10,16 @@
 
           <div class="card">
             <div class="card-body">
+              <a href="/show/?lecture={{like.lecture.name}}&professor={{like.lecture.prof}}" class="">
               <h5 class="card-title">{{like.lecture.name}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{like.lecture.prof}}</h6>
+              </a>
               <h6 class="card-subtitle mb-2 text-muted">{{like.lecture.class_code}}</h6>
               <p class="card-text">
                 {{like.lecture.time}}
               </p>
               <div class="btn-group float-right">
-                <a href="/show/?lecture={{like.lecture.name}}&professor={{like.lecture.prof}}" class="card-link btn btn-outline-secondary">
-                  자세히
-                </a>
+
 
                 <a href="{% url 'like' like.lecture.id %}" class="card-link btn btn-outline-danger ">제거하기</a>
               </div>

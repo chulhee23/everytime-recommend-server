@@ -112,9 +112,9 @@
                 // Start out with a darkened base color (negative brighten), and end
                 // up with a much brighter color
                 if (i == 0 ){
-                  colors.push("#f26549");
-                } else {
                   colors.push("#4a6cd3");
+                } else {
+                  colors.push("#f26549");
                 }
 
             }
@@ -154,9 +154,8 @@
             series: [{
                 name: 'Share',
                 data: [
-                    { name: '긍정', y: {{result.positive}} },
-                    { name: '부정', y: 1-{{result.positive}} }
-
+                    { name: '부정', y: 1-{{result.positive}} },
+                    { name: '긍정', y: {{result.positive}} }
                 ]
             }]
         });
