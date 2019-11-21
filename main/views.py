@@ -12,7 +12,7 @@ if 6 > now.month >= 3:
     semester = 1  # 1학기
 elif 12 > now.month >=9:
     semester = 2  # 2학기
-current_semester = "%s%s" % (now.year, semester)
+current_semester = "%s/%s" % (now.year, semester)
 
 data_analyser = Web_module.similar()
 
@@ -158,7 +158,7 @@ def total_search(request):
     ctx = dict()
     keyword = request.GET.get('queryset')
 
-    lectures = Lecture.objects.filter(name=keyword, semester__icontains=current_semester).order_by('prof').distinct()
+    lectures = Lecture.objects.filter(name=keyword).order_by('prof').distinct()
     lectures = list(set(map(lambda x: x.name + " " + x.prof, lectures)))
     lectures = list(map(lambda x: [x.split()[0], x.split()[1]], lectures))
 
