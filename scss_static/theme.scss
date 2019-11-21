@@ -11,6 +11,12 @@ $dark: #353535;
 
 @import 'bootstrap/scss/bootstrap.scss';
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+input[type=password] {
+    font-family:  Arial;
+    &::placeholder {
+        font-family: "NanumSquare";
+    }
+}
 
 body{
     font-family: 'NanumSquare', sans-serif;
@@ -36,7 +42,7 @@ body{
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-left-width: 5px;
-    border-left-color: #f26549;
+    border-left-color: #cc8f00;
 }
 //signup.html
 
