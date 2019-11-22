@@ -1,8 +1,5 @@
 from django.shortcuts import render, redirect
-
-# from .module import Web_module
-
-from .temp import Web_module
+from .module import Web_module
 from django.core.paginator import Paginator
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -11,28 +8,28 @@ from datetime import datetime
 now = datetime.now()
 semester = 0
 if 6 > now.month >= 3:
-semester = 1 # 1학기
+    semester = 1 # 1학기
 elif 12 > now.month >=9:
-semester = 2 # 2학기
+    semester = 2 # 2학기
 current_semester = "%s/%s" % (now.year, semester)
 
 data_analyser = Web_module.similar()
 
 def searchByLecture(lecture_name, professor_name):
-try:
-return data_analyser.find_similar_lecture(lecture_name, professor_name)
-except:
-return {"error": "리뷰가 부족하여 데이터를 확인할 수 없습니다."}
+    try:
+        return data_analyser.find_similar_lecture(lecture_name, professor_name)
+    except:
+        return {"error": "리뷰가 부족하여 데이터를 확인할 수 없습니다."}
 
 def searchByProfessor(professor_name):
-try:
-return data_analyser.find_similar_prof(professor_name)
-except:
-return {"error": "존재하지 않는 교수입니다."}
+    try:
+        return data_analyser.find_similar_prof(professor_name)
+    except:
+        return {"error": "존재하지 않는 교수입니다."}
 
 def home(request):
-lecture_list = list(set(list(Lecture.objects.values_list('name', flat=True))))
-professor_list = list(set(list(Lecture.objects.values_list('prof', flat=True))))
+    lecture_list = list(set(list(Lecture.objects.values_list('name', flat=True))))
+    professor_list = list(set(list(Lecture.objects.values_list('prof', flat=True))))
 
     return render(request, 'home.html',
         {
@@ -41,13 +38,13 @@ professor_list = list(set(list(Lecture.objects.values_list('prof', flat=True))))
         })
 
 def temp(request):
-return render(request, 'temp.html')
+    return render(request, 'temp.html')
 
 @login_required
 def result(request):
-lecture = request.GET.get('lecture') #강의명 검색 value
-professor = request.GET.get('professor') #교수명 검색 value
-context = dict()
+    lecture = request.GET.get('lecture') #강의명 검색 value
+    professor = request.GET.get('professor') #교수명 검색 value
+    context = dict()
 
     htmls = ['result/prof.html', 'result/both.html', 'result/noMatch.html']
     html_selector = 0
@@ -89,8 +86,8 @@ context = dict()
     return render(request, htmls[html_selector], context)
 
 def show(request):
-lecture = request.GET.get('lecture') #강의명 검색 value
-professor = request.GET.get('professor') #교수명 검색 value
+    lecture = request.GET.get('lecture') #강의명 검색 value
+    professor = request.GET.get('professor') #교수명 검색 value
 
     context = dict()
 
@@ -120,13 +117,15 @@ professor = request.GET.get('professor') #교수명 검색 value
                 context.update({"result": result, "first_lecture": first_lecture, "lectures": lectures, "average": average,
                  "likes_list": likes_list})
 
-                return render(request, "result/only_lecture.html", context)
+                return render(request, "result/show_lecture_only_lecture_detail.html", context)
             else:
                 first_lecture = lectures[0]
 
                 likes_list = Like.objects.filter(user = request.user.id).values_list('lecture', flat=True).distinct()
-                context.update({"result": result, "first_lecture": first_lecture, "lectures": lectures, "average": average,
+                context.update({"result": result, "first_lecture": first_lecture, "lectures": prev_lectures, "average": average,
                  "likes_list": likes_list})
+                return render(request, "result/show_lecture_detail.html", context)
+
     else:
         html_selector = 1
         try:
@@ -146,8 +145,8 @@ professor = request.GET.get('professor') #교수명 검색 value
         return render(request, htmls[html_selector], context)
 
 def like(request, lecture_id):
-current_user_id = [request.user.id](http://request.user.id/)
-lecture = Lecture.objects.get(id=lecture_id)
+    current_user_id = request.user.id
+    lecture = Lecture.objects.get(id=lecture_id)
 
     likes = Like.objects.filter(lecture = lecture_id, user = request.user.id)
     if len(likes) == 0:
@@ -160,24 +159,24 @@ lecture = Lecture.objects.get(id=lecture_id)
     return redirect('mypage')
 
 def mypage(request):
-likes = Like.objects.filter(user = [request.user.id](http://request.user.id/))
-return render(request, "users/mypage.html", {"likes": likes})
+    likes = Like.objects.filter(user = request.user.id)
+    return render(request, "users/mypage.html", {"likes": likes})
 
 def hashtag_search(keyword):
-prof_q = data_analyser.search_tags_prof(keyword)
-lecture_q = data_analyser.search_tags_lecture(keyword)
-prof_list = list(prof_q.keys())
-lecture_list = list(lecture_q.keys())
-return {'q':keyword, 'prof_q':prof_q, 'lecture_q' : lecture_q, 'prof_list': prof_list, 'lecture_list': lecture_list}
+    prof_q = data_analyser.search_tags_prof(keyword)
+    lecture_q = data_analyser.search_tags_lecture(keyword)
+    prof_list = list(prof_q.keys())
+    lecture_list = list(lecture_q.keys())
+    return {'q':keyword, 'prof_q':prof_q, 'lecture_q' : lecture_q, 'prof_list': prof_list, 'lecture_list': lecture_list}
 
 def search(request):
-q = request.GET.get('q')
-ctx = hashtag_search(q)
-return render(request, 'result/search.html', ctx)
+    q = request.GET.get('q')
+    ctx = hashtag_search(q)
+    return render(request, 'result/search.html', ctx)
 
 def total_search(request):
-ctx = dict()
-keyword = request.GET.get('queryset')
+    ctx = dict()
+    keyword = request.GET.get('queryset')
 
     lectures = Lecture.objects.filter(name=keyword).order_by('prof').distinct()
     lectures = list(set(map(lambda x: x.name + " " + x.prof, lectures)))
