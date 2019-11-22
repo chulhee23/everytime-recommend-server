@@ -102,9 +102,8 @@ def show(request):
             scores += review[1]
         average = round(scores/len(reviews), 2)
 
-
-        lectures = Lecture.objects.filter(name=lecture, prof=professor)
-        first_lecture = Lecture.objects.filter(name=lecture, prof=professor)[0]
+        lectures = Lecture.objects.filter(name=lecture, prof=professor, semester__icontains=current_semester)
+        first_lecture = lectures[0]
 
         likes_list = Like.objects.filter(user = request.user.id).values_list('lecture', flat=True).distinct()
         context.update({"result": result, "first_lecture": first_lecture, "lectures": lectures, "average": average,
@@ -158,7 +157,7 @@ def total_search(request):
     ctx = dict()
     keyword = request.GET.get('queryset')
 
-    lectures = Lecture.objects.filter(name=keyword).order_by('prof').distinct()
+    lectures = Lecture.objects.filter(name=keyword, semester__icontains=current_semester).order_by('prof').distinct()
     lectures = list(set(map(lambda x: x.name + " " + x.prof, lectures)))
     lectures = list(map(lambda x: [x.split()[0], x.split()[1]], lectures))
 
