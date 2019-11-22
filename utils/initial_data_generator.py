@@ -30,7 +30,7 @@ data = data.to_dict(orient="records")
 data = dataFormater(data)
 # json_data = json.dumps(data)
 
-write_file_path = cwd / Path("data/initial_data.json")
+write_file_path = cwd / dir_name / Path("data/initial_data.json")
 
 with open(write_file_path, 'w', encoding='UTF-8') as f:
     json.dump(data, f, ensure_ascii=False)
