@@ -100,28 +100,48 @@ def show(request):
 
     if lecture:
         html_selector = 0
-        result = data_analyser.find_similar_lecture(lecture, professor)
+        try:
+            result = data_analyser.find_similar_lecture(lecture, professor)
+        except:
+            alert="유사도가 분석된 값이 없습니다."
+            return render(request, "home.html", {'alert' : alert})
+        else:
+            reviews = result["review"].tolist()
+            scores = 0
+            for review in reviews:
+                scores += review[1]
+            average = round(scores/len(reviews), 2)
 
-        reviews = result["review"].tolist()
-        scores = 0
-        for review in reviews:
-            scores += review[1]
-        average = round(scores/len(reviews), 2)
+            lectures = Lecture.objects.filter(name=lecture, prof=professor, semester__icontains=current_semester)
 
-        lectures = Lecture.objects.filter(name=lecture, prof=professor, semester__icontains=current_semester)
-        first_lecture = lectures[0]
+            if len(lectures) == 0:
+                alert = "이번 학기에 진행하는 강의가 없습니다."
+                return render(request, "home.html", {'alert' : alert})
+            else:
 
-        likes_list = Like.objects.filter(user = request.user.id).values_list('lecture', flat=True).distinct()
-        context.update({"result": result, "first_lecture": first_lecture, "lectures": lectures, "average": average,
-         "likes_list": likes_list})
+                first_lecture = lectures[0]
+
+                likes_list = Like.objects.filter(user = request.user.id).values_list('lecture', flat=True).distinct()
+                context.update({"result": result, "first_lecture": first_lecture, "lectures": lectures, "average": average,
+                 "likes_list": likes_list})
     else:
         html_selector = 1
-        result = data_analyser.find_similar_prof(professor)
+        try:
+            result = data_analyser.find_similar_prof(professor)
+        except:
+            alert="유사도가 분석된 값이 없습니다."
+            return render(request, "home.html", {'alert' : alert})
+        else:
+            try:
+                filter = Lecture.objects.filter(prof=professor, semester__icontains=current_semester)
+            except:
+                alert="유사도가 분석된 값이 없습니다."
+                return render(request, "home.html", {'alert' : alert})
+            else:
+                lectures = filter.values_list('name').distinct()
+                context.update({"result": result, "lectures": lectures})
 
-        filter = Lecture.objects.filter(prof=professor, semester__icontains=current_semester)
-        lectures = filter.values_list('name').distinct()
-        context.update({"result": result, "lectures": lectures})
-    return render(request, htmls[html_selector], context)
+        return render(request, htmls[html_selector], context)
 
 
 def like(request, lecture_id):
@@ -163,7 +183,7 @@ def total_search(request):
     ctx = dict()
     keyword = request.GET.get('queryset')
 
-    lectures = Lecture.objects.filter(name=keyword, semester__icontains=current_semester).order_by('prof').distinct()
+    lectures = Lecture.objects.filter(name=keyword).order_by('prof').distinct()
     lectures = list(set(map(lambda x: x.name + " " + x.prof, lectures)))
     lectures = list(map(lambda x: [x.split()[0], x.split()[1]], lectures))
 
