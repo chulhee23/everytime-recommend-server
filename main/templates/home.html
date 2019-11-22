@@ -4,23 +4,6 @@
 {% load account socialaccount %}
 
 {% block content %}
-
-<!-- 강의명과 교수명 일치하지 않거나, 아무것도 입력하지 않을시 alert -->
-{% if alert %}
-<div class="alert alert-primary text-center" role="alert" style="position: fixed; top: 10px; left: 10%; width: 80%;">
-    {{alert}}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-{% endif %}
-
-<!-- <div class="blue-circle"></div>
-<div class="blue-circle2"></div>
-<div class="orange-circle-top"></div>
-<div class="orange-circle-bottom"></div>
-<div class="black-circle-top"></div> -->
-
 <div class="container shared-height" style="height: 100vh;">
 
     <div class="row align-items-center shared-height" style="height: 100vh;">

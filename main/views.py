@@ -66,15 +66,21 @@ def result(request):
 
 
     elif professor != '' : #교수명만 검색시s
-        html_selector = 0
-        result = data_analyser.find_similar_prof(professor)
-        filter = Lecture.objects.filter(prof=professor).order_by('name')
-        lecture_of_prof = filter.values_list('name', flat=True).distinct()
-        context.update({
-            'professor':professor,
-            'result':result,
-            'lectures':lecture_of_prof,
-            })
+        try:
+            result = data_analyser.find_similar_prof(professor)
+        except:
+            alert="유사도가 분석된 교수님이 없습니다."
+            return render(request, "home.html", {'alert' : alert})
+        else:
+            html_selector = 0
+            # result = data_analyser.find_similar_prof(professor)
+            filter = Lecture.objects.filter(prof=professor).order_by('name')
+            lecture_of_prof = filter.values_list('name', flat=True).distinct()
+            context.update({
+                'professor':professor,
+                'result':result,
+                'lectures':lecture_of_prof,
+                })
     elif professor == '' and lecture == '' :
         alert ="교수명과 강의명을 입력하세요."
         return render(request, "home.html", {'alert' : alert})
